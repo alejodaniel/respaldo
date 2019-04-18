@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+    <h:head>
+        <title>REGISTER</title>
+
+
+    </h:head>
+    <h:body style="background-color: bisque">
+        <nav class="navbar  bg-warning">
+            <div class="container-fluid" style="color: white;">
+                <div class="navbar-header">
+                    <div align="center">
+                        <h:graphicImage library="images" name="iepi.png" style="max-width: 50px"></h:graphicImage> 
+                        <a class="navbar-brand" style="color: blue">SERVICIO NACIONAL DE LOS DERECHOS INTELECTUALES</a>   
+                    </div>
+                </div>
+                <ul class="nav navbar-nav text-right">
+                    <h:form>
+                        <span style="font-size: 30px; color: black;">
+                            <i class="fas fa-reply"></i>
+                            <h:commandLink action="/home.xhtml" style="color: red; font-size: 20px" value="REGRESAR"></h:commandLink>
+                        </span>
+                    </h:form>
+                </ul>
+            </div>
+        </nav>
+        <br/>
+        <br/>
+        <br/>
+
+        <p:growl id="mensaje"/>
+        <div class="valign-wrapper" id="login-page">
+            <div class="container">
+                <div class="center-align" >
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-12"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8 text-center">
+                                <div class="col s6 offset-s3">
+                                    <div class="card">
+                                        <div class="card-content">
+
+                                            <h:graphicImage library="images" name="iepi.png" style="max-width: 80px">   <b style="font-size: 20px">REGISTRO DE USUARIOS</b> &nbsp;  &nbsp; </h:graphicImage>
+                                            <h:form>
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-md-5">
+                                                        <!--<span style="font-size: 25px; color: black;">
+                                                            <i class="fas fa-user-friends"></i>
+                                                        </span>-->                                           
+                                                        <!--  <p:selectManyCheckbox id="basic" 
+                                                                                required="false" requiredMessage="Seleccione el rol" >
+                                                              <f:selectItem itemLabel="USUARIO" itemValue="Xbox One" />                                                         
+                                                          </p:selectManyCheckbox>-->
+                                                    </div>
+
+                                                    <div class="form-group col-md-8">
+                                                        <span style="font-size: 25px; color: black;">
+                                                            <i class="fas fa-user-friends"></i>
+                                                        </span>
+                                                        <h:outputText value="NOMBRE" style="font-weight:bold"/> &nbsp; 
+                                                        <h:inputText id="das" value="#{registerBean.nombre}" required="true" 
+                                                                     requiredMessage="Falta el username"></h:inputText> 
+                                                        <p:watermark for="das" value="Nombre Apellido" />
+
+                                                    </div>                                                   
+                                                    <div class="form-group col-md-9">
+                                                        <span style="font-size: 25px; color: black;">
+                                                            <i class="fas fa-id-card"></i>
+                                                        </span>         
+                                                        <h:outputText  value="CEDULA" style="font-weight:bold"/> &nbsp;
+                                                        <p:inputMask id="cedula" value="#{registerBean.cedula}" mask="9999999999" required="true"
+                                                                     requiredMessage="Falta el número de cedula"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-8">
+                                                        <span style="font-size: 25px; color: black;">
+                                                            <i class="fas fa-user-lock"></i>
+                                                        </span>
+                                                        <h:outputText value="USERNAME" style="font-weight:bold"/> &nbsp; 
+                                                        <h:inputText id="user" value="#{registerBean.user}" required="true"
+                                                                     style="text-transform: lowercase"
+                                                                     requiredMessage="Falta el username"></h:inputText>
+                                                        <p:watermark for="user" value="acaiza" />
+
+                                                    </div>
+                                                    <div class="form-group col-md-8">
+                                                        <span style="font-size: 25px; color: black;"> 
+                                                            <i class="fas fa-key"></i>
+                                                        </span>
+                                                        <h:outputText value="CONTRASEÑA" style="font-weight:bold"/> &nbsp;
+                                                        <h:inputSecret id="password" value="#{registerBean.password}" required="true"
+                                                                       maxlength="20" 
+                                                                       requiredMessage="Falta la contraseña"></h:inputSecret>
+
+                                                    </div>                                           
+                                                    <div class="form-group col-md-8">
+                                                        <span style="font-size: 25px; color: black;"> 
+                                                            <i class="fas fa-check-circle"></i>
+                                                        </span>
+                                                        <h:outputText value="ESTADO" style="font-weight:bold"/> &nbsp; 
+                                                        <h:inputText id="texto" style="font-weight: bold" required="true"
+                                                                     disabled="true"  requiredMessage="falta el estado" value="#{registerBean.estado}"  />
+                                                    </div>                                                   
+                                                    <h:selectOneRadio layout="pageDirection" valueChangeListener="#{registerBean.ChangeRadio}">
+                                                        <f:selectItems value="#{registerBean.lista}" var="item" itemValue="#{item}" 
+                                                                       itemLabel="#{item}"/>
+                                                        <f:ajax render="texto"/>
+                                                    </h:selectOneRadio>
+                                                </div>
+                                                <div class="center-align">
+                                                    <p:commandButton 
+                                                        id="loginButton" value="REGISTRAR"
+                                                        style="font-weight:bold"
+                                                        actionListener="#{registerBean.register}"
+                                                        update="mensaje"/>
+                                                </div>
+
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+           <button onclick="location.href = 'htp://localhost:8080/empresa-version1.0/home.xhtml'">Llévame a otro lado</button>
+             <a href="home.xhtml" title="Mi enlace">Mi enlace</a>
+         </div>-->
+    </h:body>
+</html>

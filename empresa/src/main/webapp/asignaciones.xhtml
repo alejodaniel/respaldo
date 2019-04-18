@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+    <h:head>
+        <title>ASIGNACIONES</title>
+
+    </h:head>
+    <h:body style="background: bisque">
+        <p:growl id="mensaje"  life="1000"/>
+        <nav class="navbar  bg-warning">
+            <div class="container-fluid" style="color: white;">
+                <div class="navbar-header">
+                    <div align="center">
+                        <h:graphicImage library="images" name="iepi.png" style="max-width: 50px"></h:graphicImage> 
+                        <a class="navbar-brand" style="color: blue">SERVICIO NACIONAL DE LOS DERECHOS INTELECTUALES</a>   
+                    </div>
+                </div>
+                <ul class="nav navbar-nav text-right">
+                    <h:form>
+                        <span style="font-size: 30px; color: black;">
+                            <i class="fas fa-reply"></i>
+                            <h:commandLink action="/home.xhtml" style="color: red; font-size: 20px" value="REGRESAR"></h:commandLink>
+                        </span>
+                    </h:form>
+                </ul>
+            </div>
+        </nav>
+        <h1 align="center">ASIGNACIONES</h1>
+
+        <div align="center">
+            <!--<a  onclick="PF('wdialogo').show();" actionListener="{actionBean.setAccion('R')}" update=":frmDialogo">
+                <i class="fas fa-user-plus fa-1x">NUEVO</i>
+            </a>-->
+            <p:panel id="lista" header="DATOS PERSONALES" 
+                     style="margin-bottom: 500px; width: 1200px; height: 1200px;">
+                <h:form>                   
+
+                    <div class="row">
+                        <div class="col">
+                            <label for="inputAddress">NOMBRE</label>
+                            <input type="text" class="form-control" value="#{asignacionBean.usuario.usu_nombre}" disabled="false"></input>
+                        </div>
+                        <div class="col">
+                            <label for="inputAddress">IDENTIFICACIÓN</label>
+                            <input type="text" class="form-control" value="#{asignacionBean.usuario.identificacion}" disabled="false"></input>
+
+                        </div>
+                        <div class="col">
+                            <label for="inputAddress">ESTADO</label>
+                            <input type="text" class="form-control" value="#{asignacionBean.usuario.estado}" disabled="false"></input>
+
+                        </div>
+                        <div class="col">
+                            <label for="inputAddress">USERNAME</label>
+                            <input type="text" class="form-control" value="#{asignacionBean.usuario.usu_login}" disabled="false"></input>
+
+                        </div>
+                    </div>                            
+                    <br/>
+                </h:form>
+                <h:form>    
+                    <span style="font-size: 30px; color: black;">
+                        <i class="fas fa-lock-open"></i>
+                    </span>
+
+                    <a  onclick="PF('wdialogo').show();" actionListener="#{actionBean.setAccion('R')}" update=":frmDialogo">
+                        <i class="fas fa-user-plus fa-1x">CAMBIAR CONTRASEÑA</i>
+                    </a>
+
+                </h:form>   
+                <br/>
+                <h:form>
+                    <h1 style="color: blue">ASIGNACIÓN DE ROLES</h1>
+                    <p:dataTable id="tabla" emptyMessage="No hay registros"
+                                 rows="11"                                                                      
+                                 value="#{asignacionBean.roles}" var="rol" editable="true" 
+                                 >
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{rol.rol_nombre}"/>
+                        </p:column>
+                        <p:column headerText="Descripcion">
+                            <h:outputText value="#{rol.descripcion}"/>
+                        </p:column>
+                        <p:column headerText="Descripcion">
+                            <h:outputText value="#{rol.rol_codigo}"/>
+                        </p:column>
+                        <p:column headerText="Roles">
+                            <!--<h:selectBooleanCheckbox  value="Juan " > 
+                                <f:selectItem itemLabel=""  />
+                            </h:selectBooleanCheckbox> -->
+                            <p:selectBooleanCheckbox value="#{rol.asignado}" itemLabel=""/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <br/>
+                    <br/>
+
+                    <div class="center-align">
+                        <p:growl id="passw" life="500"/>
+                        <p:commandButton value="GUARDAR CAMBIOS" actionListener="#{asignacionBean.GuardarDatosCheckBox}"                                     
+                                         icon="ui-icon-check" update="passw">
+                            <p:confirm message="Seguro que deseas aceptar los cambio?" header="Aviso" icon="ui-icon-alert"/>
+                     
+                        </p:commandButton>
+
+                    </div>  
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                </h:form>
+
+            </p:panel>
+        </div>
+        <p:dialog id="dialogo" widgetVar="wdialogo" header="CAMBIO DE CONTRASEÑAS" modal="true" resizable="false" closeOnEscape="true" draggable="false">
+            <p:growl id="pass"/>
+            <h:form id="frmDialogo">
+
+                <h:panelGrid columns="2">
+                    <label>CONTRASEÑA ANTERIOR</label>     
+
+                    <p:password value="#{asignacionBean.password}" id="passanterior" 
+                                required="true" requiredMessage="falta la contraseña anterior"
+                                label="USERNAME:"/>
+
+                    <label>NUEVA CONTRASEÑA:</label>
+                    <p:password value="#{asignacionBean.newPassword}" id="password"                          
+                                label="PASSWORD:"/>
+
+                    <label>REPETIR NUEVA CONTRASEÑA</label> 
+                    <p:password value="#{asignacionBean.rNewPassword}" id="repeatpassword"                
+                                label="PASSWORD:"/>
+                    <p:commandButton value="ACEPTAR CAMBIOS" actionListener="#{asignacionBean.cambiarPassword}" oncomplete="PF('wdialogo').hide();" icon="ui-icon-check" update="pass">
+                       <!-- <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('wdialogo').hide();" />-->
+                        <p:confirm message="Seguro que deseas aceptar los cambio?" header="Aviso" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+    </h:body>
+</html>
