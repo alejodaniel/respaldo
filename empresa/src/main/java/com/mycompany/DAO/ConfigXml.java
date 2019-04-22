@@ -9,8 +9,8 @@ public class ConfigXml {
 
     public HashMap<String, String> Conection() {
         HashMap<String, String> hm = new HashMap<>();
-        hm.put("host", "jdbc:mysql://localhost:3306/login");
-        hm.put("user", "root");
+        hm.put("host", "jdbc:postgresql://localhost:5432/autenticacion");
+        hm.put("user", "postgres");
         hm.put("password", "123456789");
         return hm;
     }

@@ -20,7 +20,7 @@ public class DataSource {
     public static EntityManager getEntityManager() {
         if (em == null || !em.isOpen()) {
             ConfigXml config = new ConfigXml();
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectPU", config.Conection());
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectPU");
             em = emf.createEntityManager();
             if (em == getEntityManager()) {
                 System.out.println("EJEMPLO EXITOSO");
